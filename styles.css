@@ -7,6 +7,8 @@ body, html{
   height:100%;
 }
 body{
+  background-image: url(media/Dance-floor1.jpg);
+  background-size:cover;
   margin: 0px;
   background-color:#444;
   font-size: 18px;
@@ -18,6 +20,10 @@ body, a:link, a:visited, a:active{
   padding:5px 12px;
   float:right;
 }
+#lineUp{
+  float:left;
+  padding:5px 12px;
+}
 .topbar{
   height:32px;
   background-color: #555;
@@ -25,12 +31,16 @@ body, a:link, a:visited, a:active{
 .title{
   background-color: #777;
 }
+
+
 .dancer{
-  border-radius:50%;
-  background-color: red;
+  background-color: transparent;
+  background-size: 200px 200px;
+  border-radius: 0%;
   position:absolute;
-  height: 50px;
-  width: 50px;
+  height: 200px;
+  width: 200px;
+  transition: all 1s;
 }
 
 .bouncyDancer{
