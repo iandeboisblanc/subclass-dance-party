@@ -8,15 +8,14 @@ Nerd.prototype = Object.create(Dancer.prototype);
 Nerd.prototype.constructor = Nerd;
 
 Nerd.prototype.step = function() {
-  this.interact(function(closest) {
-    if (closest.dist < 100 && closest.dancer.hasClass('girl')) {
-      this.setPosition(0, 0);
-    }
-    else {
-      this.setPosition($("body").height() * Math.random() * 0.5,
+  var runFromGirl = function(closest) {
+    if (closest.girl[0] < 200) {
+      this.setPosition($("body").height() * (1 - 0.5 * Math.random()) - 150,
       $("body").width() * Math.random());
     }
-  });
+
+  };
+  this.interact(runFromGirl);
   Dancer.prototype.step.call(this);
 };
 
@@ -26,9 +25,3 @@ Nerd.prototype.imageBank = [
   'media/nerds/tumblr_nvpbq466RU1scncwdo1_540.gif',
   'media/nerds/tumblr_nzlh474yRf1u6w1edo2_400.gif'
 ];
-
-Nerd.prototype.interact = function() {
-
-
-  Dancer.prototype.interact.call(this);
-}

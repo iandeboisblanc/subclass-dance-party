@@ -1,18 +1,18 @@
 // Creates and returns a new dancer object that can step
-var Dancer = function(bottom, left, timeBetweenSteps) {
+var Dancer = function(top, left, timeBetweenSteps) {
   this.$node = $('<span class="dancer"></span>');
   this.timeBetweenSteps = timeBetweenSteps;
   this.step();
-  this.setPosition(bottom, left);
+  this.setPosition(top, left);
 };
 
 Dancer.prototype.step = function() {
   setTimeout(this.step.bind(this), this.timeBetweenSteps);
 };
 
-Dancer.prototype.setPosition = function(bottom, left) {
+Dancer.prototype.setPosition = function(top, left) {
   var styleSettings = {
-    bottom: bottom,
+    top: top,
     left: left
   };
   this.$node.css(styleSettings);
@@ -20,7 +20,7 @@ Dancer.prototype.setPosition = function(bottom, left) {
 
 Dancer.prototype.lineUp = function(position) {
   this.$node.css('left', position);
-  this.$node.css('bottom', '20%');
+  this.$node.css('top', '70%');
 };
 
 Dancer.prototype.chooseImage = function() {
@@ -32,26 +32,40 @@ Dancer.prototype.chooseImage = function() {
 Dancer.prototype.interact = function(action) {
   var currentLocation = this.$node.position();
   //Loop through list and find nearest person
-  var closest = {
-    dist: 1000000,
-    dancer: undefined
+  var closest = {nerd : [10000],
+    girl: [10000],
+    coolguy:[10000]
   };
 
-  for (var i = 0; i < window.dancers; i++) {
-    var distance = compareLocations(currentLocation, window.dancers[i].position());
-    if (distance < closest.dist) {
-      closest.dancer = window.dancers[i];
-      closest.dist = distance;
+  for (var i = 0; i < window.dancers.length; i++) {
+    var distance = compareLocations(currentLocation, window.dancers[i].$node.position());
+    if (window.dancers[i] instanceof Nerd) {
+      if (distance < closest.nerd[0]) {
+        closest.nerd[1] = window.dancers[i];
+        closest.nerd[0] = distance;
+      }
+    }
+    else if (window.dancers[i] instanceof Girl) {
+      if (distance < closest.girl[0]) {
+        closest.girl[1] = window.dancers[i];
+        closest.girl[0] = distance;
+      }
+    }
+    else if (window.dancers[i] instanceof CoolGuy) {
+      if (distance < closest.coolguy[0]) {
+        closest.coolguy[1] = window.dancers[i];
+        closest.coolguy[0] = distance;
+      }
     }
   }
   action.call(this, closest);
   //Determine if within threshold for action
     //Perform action
-}
+};
 
 var compareLocations = function(loc1, loc2) {
   var height = Math.abs(loc1.top - loc2.top);
   var width = Math.abs(loc1.left - loc2.left);
   var distance = Math.sqrt(height*height+width*width);
   return distance;
-}
+};

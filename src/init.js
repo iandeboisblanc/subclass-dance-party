@@ -21,11 +21,17 @@ $(document).ready(function() {
     var dancerMakerFunction = window[dancerMakerFunctionName];
 
     // make a dancer with a random position
-
+    var stepTime = 1000;
+    if(dancerMakerFunctionName === 'Nerd'){
+      stepTime = 500;
+    }
+    else if (dancerMakerFunctionName === "CoolGuy") {
+      stepTime = 1500;
+    }
     var dancer = new dancerMakerFunction(
-      $("body").height() * Math.random() * 0.5,
+      $("body").height() * (1 - 0.5 * Math.random()) - 150,
       $("body").width() * Math.random(),
-      1100
+      stepTime
     );
     dancer.chooseImage();
     $('body').append(dancer.$node);

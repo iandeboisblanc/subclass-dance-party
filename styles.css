@@ -35,12 +35,12 @@ body, a:link, a:visited, a:active{
 
 .dancer{
   background-color: transparent;
-  background-size: 200px 200px;
+  background-size: 150px 150px;
   border-radius: 0%;
   position:absolute;
-  height: 200px;
-  width: 200px;
-  transition: all 1s;
+  height: 150px;
+  width: 150px;
+  transition: all 2s;
 }
 
 .bouncyDancer{
@@ -49,6 +49,17 @@ body, a:link, a:visited, a:active{
   animation-name: bounce;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+}
+
+.nerd{
+  transition: all 0.5s;
+}
+
+.coolGuy{
+  background-size: 200px 200px;
+  height: 200px;
+  width: 200px;
+  transition: all 1.6s linear;
 }
 
 
