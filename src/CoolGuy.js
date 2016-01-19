@@ -12,8 +12,9 @@ CoolGuy.prototype.step = function() {
   var beatUpNerd = function(closest) {
     if (closest.nerd[0] < 75 && this.foundNerd === false) {
       this.$node.css('transition','all 0s');
-      this.$node.css('z-index',10);
       closest.nerd[1].$node.toggle();
+      closest.nerd[1].$node.removeClass('nerd');
+      closest.nerd[1].$node.addClass('inFight');
       this.$node.css('background-image', 'url(media/giphy.gif)');
       this.foundNerd = true;
     }
@@ -33,6 +34,6 @@ CoolGuy.prototype.step = function() {
 
 CoolGuy.prototype.imageBank = [
   'media/coolguys/tumblr_nlkxom50sK1swl13ro1_540.gif',
-  'media/coolguys/tumblr_nmne8l53mn1u5ka03o1_500.gif',
-  'media/coolguys/tumblr_nw5ai4I7GM1s8byveo2_500.gif'
+  'media/nerds/tumblr_nnsvz0u4uk1slsekho1_250.gif',
+  'media/coolguys/tumblr_nmne8l53mn1u5ka03o1_500.gif'
 ];

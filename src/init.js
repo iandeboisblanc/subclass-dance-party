@@ -47,5 +47,9 @@ $(document).ready(function() {
     }
   });
 
+  $('.girl').on("click", function(event){
+    $(this).wantsToDance = true;
+  });
+
 });
 

@@ -39,7 +39,7 @@ Dancer.prototype.interact = function(action) {
 
   for (var i = 0; i < window.dancers.length; i++) {
     var distance = compareLocations(currentLocation, window.dancers[i].$node.position());
-    if (window.dancers[i] instanceof Nerd) {
+    if (window.dancers[i].$node.hasClass('nerd')) {
       if (distance < closest.nerd[0]) {
         closest.nerd[1] = window.dancers[i];
         closest.nerd[0] = distance;
