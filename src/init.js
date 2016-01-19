@@ -17,8 +17,6 @@ $(document).ready(function() {
      */
     var dancerMakerFunctionName = $(this).data("dancer-maker-function-name");
 
-    console.log(dancerMakerFunctionName);
-
     // get the maker function for the kind of dancer we're supposed to make
     var dancerMakerFunction = window[dancerMakerFunctionName];
 
@@ -30,6 +28,17 @@ $(document).ready(function() {
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
+    window.dancers.push(dancer);
   });
+
+  $("#lineUp").on("click", function(event) {
+    var increment = 100 / window.dancers.length;
+    //iterate through array
+    for(var i = 0; i < window.dancers.length; i++) {
+    //call setPosition
+      dancers[i].lineUp((i * increment) + '%');
+    }
+  });
+
 });
 
