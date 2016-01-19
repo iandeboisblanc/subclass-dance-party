@@ -7,7 +7,6 @@ BouncyDancer.prototype = Object.create(Dancer.prototype);
 BouncyDancer.prototype.constructor = BouncyDancer;
 
 BouncyDancer.prototype.step = function() {
-  this.$node.css('height',30);
-  // this.$node.toggle();
-  Dancer.prototype.step.call(this);
+  this.$node.addClass('bouncyDancer');
+  this.$node.css('animation-duration', (this.timeBetweenSteps/1000) + 's');
 };
