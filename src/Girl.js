@@ -10,16 +10,20 @@ Girl.prototype.constructor = Girl;
 
 Girl.prototype.step = function() {
   var seekPartner = function(closest) {
-    var closestPartner = closest.coolGuy;
-    if(closest.nerd[0] < closest.coolGuy[0]){
+    var closestPartner = closest.coolguy;
+    if(closest.nerd[0] < closest.coolguy[0]){
       closestPartner = closest.nerd;
     }
     if (closestPartner[0] < 75) {
+      var couple = [this, closestPartner[1]];
+      window.couples.push(couple);
       this.$node.css('transition','all 0s');
       closestPartner[1].$node.toggle();
-      // closestPartner[1].$node.removeClass('nerd');
-      closestPartner[1].$node.addClass('dancing');
-      // this.$node.css('background-image', 'url(mcedia/giphy.gif)');
+      closestPartner[1].$node.removeClass('nerd');
+      closestPartner[1].$node.removeClass('coolguy');
+      closestPartner[1].$node.addClass('coupled');
+      this.$node.addClass('coupled');
+      this.$node.css('background-image', 'url(media/2704073u712vng0tx.gif)');
       this.wantsToDance = false;
     }
     else if(closestPartner[0] < 10000){

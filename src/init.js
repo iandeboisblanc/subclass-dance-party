@@ -1,5 +1,6 @@
 $(document).ready(function() {
   window.dancers = [];
+  window.couples = [];
 
   $(".addDancerButton").on("click", function(event) {
     /* This function sets up the click handlers for the create-dancer
@@ -28,6 +29,9 @@ $(document).ready(function() {
     else if (dancerMakerFunctionName === "CoolGuy") {
       stepTime = 1500;
     }
+    else if (dancerMakerFunctionName === 'Girl') {
+      stepTime = 1000;
+    }
     var dancer = new dancerMakerFunction(
       $("body").height() * (1 - 0.5 * Math.random()) - 150,
       $("body").width() * Math.random(),
@@ -36,7 +40,9 @@ $(document).ready(function() {
     dancer.chooseImage();
     $('body').append(dancer.$node);
     window.dancers.push(dancer);
-  });
+    dancer.$node.on("click", function(event){
+      dancer.wantsToDance = true;
+    });
 
   $("#lineUp").on("click", function(event) {
     var increment = 100 / window.dancers.length;
@@ -47,8 +53,6 @@ $(document).ready(function() {
     }
   });
 
-  $('.girl').on("click", function(event){
-    $(this).wantsToDance = true;
   });
 
 });

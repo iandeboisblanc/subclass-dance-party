@@ -34,7 +34,8 @@ Dancer.prototype.interact = function(action) {
   //Loop through list and find nearest person
   var closest = {nerd : [10000],
     girl: [10000],
-    coolguy:[10000]
+    coolguy:[10000],
+    coupled: [10000]
   };
 
   for (var i = 0; i < window.dancers.length; i++) {
@@ -45,13 +46,13 @@ Dancer.prototype.interact = function(action) {
         closest.nerd[0] = distance;
       }
     }
-    else if (window.dancers[i] instanceof Girl) {
+    else if (window.dancers[i].$node.hasClass('girl')) {
       if (distance < closest.girl[0]) {
         closest.girl[1] = window.dancers[i];
         closest.girl[0] = distance;
       }
     }
-    else if (window.dancers[i] instanceof CoolGuy) {
+    else if (window.dancers[i].$node.hasClass('coolguy')) {
       if (distance < closest.coolguy[0]) {
         closest.coolguy[1] = window.dancers[i];
         closest.coolguy[0] = distance;
