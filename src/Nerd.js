@@ -16,6 +16,7 @@ Nerd.prototype.step = function() {
 
   };
   this.interact(runFromGirl);
+  this.timeBetweenSteps = 200;
   Dancer.prototype.step.call(this);
 };
 

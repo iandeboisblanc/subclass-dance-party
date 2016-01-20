@@ -22,16 +22,7 @@ $(document).ready(function() {
     var dancerMakerFunction = window[dancerMakerFunctionName];
 
     // make a dancer with a random position
-    var stepTime = 1000;
-    if(dancerMakerFunctionName === 'Nerd'){
-      stepTime = 500;
-    }
-    else if (dancerMakerFunctionName === "CoolGuy") {
-      stepTime = 1500;
-    }
-    else if (dancerMakerFunctionName === 'Girl') {
-      stepTime = 1000;
-    }
+    var stepTime = 200;
     var dancer = new dancerMakerFunction(
       $("body").height() * (1 - 0.5 * Math.random()) - 150,
       $("body").width() * Math.random(),
@@ -43,6 +34,7 @@ $(document).ready(function() {
     dancer.$node.on("click", function(event){
       dancer.wantsToDance = true;
     });
+  });
 
   $("#lineUp").on("click", function(event) {
     var increment = 100 / window.dancers.length;
@@ -53,6 +45,13 @@ $(document).ready(function() {
     }
   });
 
+  $(document).on('keypress', function(event){
+    var key = String.fromCharCode(event.keyCode);
+    if(key === 'c'){
+      for(var i = 0; i < window.dancers.length; i++) {
+        dancers[i].conga(i);
+      }
+    }
   });
 
 });

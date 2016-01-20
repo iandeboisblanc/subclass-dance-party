@@ -29,13 +29,14 @@ Girl.prototype.step = function() {
     else if(closestPartner[0] < 10000){
       var xDisplacement = closestPartner[1].$node.position().left - this.$node.position().left;
       var yDisplacement = closestPartner[1].$node.position().top - this.$node.position().top;
-      var height = this.$node.position().top + 100 * (yDisplacement/closestPartner[0]);
-      var width = this.$node.position().left + 100 * (xDisplacement/closestPartner[0]);
+      var height = this.$node.position().top + 40 * (yDisplacement/closestPartner[0]);
+      var width = this.$node.position().left + 40 * (xDisplacement/closestPartner[0]);
       this.setPosition(height, width);
     }
   };
   if(this.wantsToDance){
     this.interact(seekPartner);
+    this.timeBetweenSteps = 200;
   }
   Dancer.prototype.step.call(this);
 };

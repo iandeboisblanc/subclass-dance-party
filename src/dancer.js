@@ -19,6 +19,9 @@ Dancer.prototype.setPosition = function(top, left) {
 };
 
 Dancer.prototype.lineUp = function(position) {
+  this.$node.removeClass('girl');
+  this.$node.removeClass('nerd');
+  this.$node.removeClass('coolguy');
   this.$node.css('left', position);
   this.$node.css('top', '70%');
 };
@@ -35,7 +38,6 @@ Dancer.prototype.interact = function(action) {
   var closest = {nerd : [10000],
     girl: [10000],
     coolguy:[10000],
-    coupled: [10000]
   };
 
   for (var i = 0; i < window.dancers.length; i++) {
@@ -62,6 +64,21 @@ Dancer.prototype.interact = function(action) {
   action.call(this, closest);
   //Determine if within threshold for action
     //Perform action
+};
+
+Dancer.prototype.conga = function(index) {
+  if(index === 0){
+    var mouseFollow = function(e){
+      this.$node.css({left:e.pageX - 100, top:e.pageY - 100});
+    };
+  }
+  else{
+    var leader = window.dancers[index - 1];
+    var mouseFollow = function(){
+      this.$node.css({left:leader.$node.position().left, top:leader.$node.position().top});
+    };
+  }
+  $(document).mousemove(mouseFollow.bind(this));
 };
 
 var compareLocations = function(loc1, loc2) {

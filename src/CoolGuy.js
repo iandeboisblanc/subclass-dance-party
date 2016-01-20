@@ -16,6 +16,7 @@ CoolGuy.prototype.step = function() {
       this.$node.css('transition','all 0s');
       closest.nerd[1].$node.toggle();
       closest.nerd[1].$node.removeClass('nerd');
+      this.$node.removeClass('coolguy');
       closest.nerd[1].$node.addClass('coupled');
       this.$node.addClass('coupled');
       this.$node.css('background-image', 'url(media/giphy.gif)');
@@ -25,13 +26,14 @@ CoolGuy.prototype.step = function() {
       if(this.foundNerd === false){
         var xDisplacement = closest.nerd[1].$node.position().left - this.$node.position().left;
         var yDisplacement = closest.nerd[1].$node.position().top - this.$node.position().top;
-        var height = this.$node.position().top + 100 * (yDisplacement/closest.nerd[0]);
-        var width = this.$node.position().left + 100 * (xDisplacement/closest.nerd[0]);
+        var height = this.$node.position().top + 30 * (yDisplacement/closest.nerd[0]);
+        var width = this.$node.position().left + 30 * (xDisplacement/closest.nerd[0]);
         this.setPosition(height, width);
       }
     }
   };
   this.interact(beatUpNerd);
+  this.timeBetweenSteps = 200;
   Dancer.prototype.step.call(this);
 };
 
